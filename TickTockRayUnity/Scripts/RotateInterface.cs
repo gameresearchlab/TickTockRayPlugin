@@ -28,7 +28,7 @@ public class RotateInterface : MonoBehaviour {
 
 		correction = Quaternion.identity;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -41,7 +41,7 @@ public class RotateInterface : MonoBehaviour {
 
 
 
-		Quaternion rotation = WatchRotation.rotation;
+		Quaternion rotation = WatchRotationJNI.rotation;
 
 		bool update_correction = false;
 
@@ -53,7 +53,7 @@ public class RotateInterface : MonoBehaviour {
 
 		if(update_correction)
 		{
-			correction = WatchRotation.rotation;
+			correction = WatchRotationJNI.rotation;
 		}
 
 
@@ -81,7 +81,7 @@ public class RotateInterface : MonoBehaviour {
 		{
 			state = IDLE;
 		}
-		
+
 		if(state != IDLE){
 			framesWaited++;
 			if((330 < z && z <= 360) || (0 <= z && z < 30)){
@@ -100,7 +100,7 @@ public class RotateInterface : MonoBehaviour {
 
 
 		}
-			
+
 		if(state == IDLE)
 		{
 			if(40 < z && z < 90){

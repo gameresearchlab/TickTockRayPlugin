@@ -19,9 +19,9 @@ public class RotateBASIC : MonoBehaviour {
 		{
 			return;
 		}
-			
 
-		Quaternion rotation = WatchRotation.rotation;
+
+		Quaternion rotation = WatchRotationJNI.rotation;
 
 		bool update_correction = false;
 
@@ -33,7 +33,7 @@ public class RotateBASIC : MonoBehaviour {
 
 		if(update_correction)
 		{
-			correction = WatchRotation.rotation;
+			correction = WatchRotationJNI.rotation;
 		}
 
 
@@ -52,7 +52,7 @@ public class RotateBASIC : MonoBehaviour {
 
 
 
-		
+
 	public void draw_axis_giz()
 	{
 		Debug.DrawRay(this.transform.position, this.transform.up, Color.green);

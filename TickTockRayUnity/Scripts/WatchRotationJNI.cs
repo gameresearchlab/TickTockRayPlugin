@@ -13,21 +13,18 @@ public class WatchRotationJNI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-		TextMesh debug2 = GameObject.Find("Debug2").GetComponent<TextMesh>();
-
-		debug2.text = "Text Init";
 
 		AndroidJNI.AttachCurrentThread();
-
-		debug2.text = "Thread";
-
 
 		using (AndroidJavaClass cls_UnityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer")) {
 
 			using (AndroidJavaObject obj_Activity = cls_UnityPlayer.GetStatic<AndroidJavaObject> ("currentActivity")) {
 
-				watchReader = new AndroidJavaClass ("edu.csumb.hci.listenerplugin.ListenToWearableService");
+				using(AndroidJavaObject constructor = new AndroidJavaObject("edu.csumb.hci.listenerplugin.ServiceConstructor", obj_Activity)){
+
+					watchReader = new AndroidJavaClass ("edu.csumb.hci.listenerplugin.ListenToWearableService");
+
+				}
 
 			}
 		}
@@ -66,7 +63,7 @@ public class WatchRotationJNI : MonoBehaviour {
 
 
 	/*
-	 * 
+	 *
 	 * 	AndroidJavaClass androidJC = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		debug2.text = "Player";
 		AndroidJavaObject jo = androidJC.GetStatic<AndroidJavaObject>("currentActivity");
@@ -124,9 +121,9 @@ public class WatchRotationJNI : MonoBehaviour {
 					//watchReader = new AndroidJavaClass("edu.csumb.hci.listenerplugin.ListenToWearableService");
 					//debug2.text = "Reader Bound";
 				}
-				
+
 			}
-			
+
 		}
 
 
