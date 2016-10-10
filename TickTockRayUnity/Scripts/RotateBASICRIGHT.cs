@@ -5,11 +5,13 @@ using System;
 public class RotateBASICRIGHT : MonoBehaviour {
 
 	Quaternion correction;
+    Quaternion camFront;
 
 
 	// Use this for initialization
 	void Start () {
 		correction = Quaternion.identity;
+        camFront = Quaternion.identity;
 	}
 
 	// Update is called once per frame
@@ -33,18 +35,19 @@ public class RotateBASICRIGHT : MonoBehaviour {
 
 		if(update_correction)
 		{
-			correction = WatchRotationJNI.rotation;
+            correction = WatchRotationJNI.rotation;
+            camFront =  Quaternion.LookRotation(GameObject.Find("Main Camera").transform.forward);
 		}
 
 
-		transform.localRotation = rotation * Quaternion.Inverse(correction);
+        transform.localRotation = rotation * Quaternion.Inverse(correction) * camFront * Quaternion.AngleAxis(180, Vector3.forward);
 
 
 
-
-		transform.localRotation = new Quaternion(transform.localRotation.x,
-			-transform.localRotation.y,
-			-transform.localRotation.z,
+		transform.localRotation = new Quaternion(
+            transform.localRotation.x,
+			transform.localRotation.y,
+			transform.localRotation.z,
 			-transform.localRotation.w);
 
 
