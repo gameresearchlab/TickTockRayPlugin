@@ -9,6 +9,7 @@ public class RotateInterface : MonoBehaviour {
 	public const int RIGHT_CLICK = 2;
 	public const int LEFT_HALF = 3;
 	public const int LEFT_CLICK = 4;
+    public const int PAUSE = 5;
 
 	Quaternion correction;
 
@@ -73,6 +74,8 @@ public class RotateInterface : MonoBehaviour {
 
 
 
+      
+
 		//debug2.text = string.Format("RIV:\n{0}", z);
 
 
@@ -101,8 +104,18 @@ public class RotateInterface : MonoBehaviour {
 
 		}
 
-		if(state == IDLE)
-		{
+        if(state == IDLE || state == PAUSE)
+        {
+            if(20 < z && z < 40 || 290 < z && z < 318){
+                state = PAUSE;
+            }
+            else{
+                state = IDLE;
+            }
+        }
+
+        if(state == IDLE || state == PAUSE)
+        {
 			if(40 < z && z < 90){
 				state = RIGHT_HALF;
 			}else if( 180 < z && z < 290){

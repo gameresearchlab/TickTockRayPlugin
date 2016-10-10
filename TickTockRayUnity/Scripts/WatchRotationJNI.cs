@@ -48,8 +48,7 @@ public class WatchRotationJNI : MonoBehaviour {
 				rotation = new Quaternion (Single.Parse (values [1]), Single.Parse (values [2]), Single.Parse (values [3]), Single.Parse (values [0]));
 				mouseState = Int32.Parse (values [4]);
 
-				TextMesh debug = GameObject.Find("Debug").GetComponent<TextMesh>();
-				debug.text = string.Format("Watch:\n{0}\n{1}\n{2}", rotation.eulerAngles.x, rotation.eulerAngles.y, rotation.eulerAngles.z);
+				//debug.text = string.Format("Watch:\n{0}\n{1}\n{2}", rotation.eulerAngles.x, rotation.eulerAngles.y, rotation.eulerAngles.z);
 
 				// save this rotation as an "offset" if it was the first time it was measured
 				if (firstMeasurement) {
