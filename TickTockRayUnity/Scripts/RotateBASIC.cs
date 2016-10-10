@@ -2,14 +2,17 @@
 using System.Collections;
 using System;
 
+//If this breaks then remove all camFront elements
 public class RotateBASIC : MonoBehaviour {
 
 	Quaternion correction;
+	Quaternion camFront;
 
 
 	// Use this for initialization
 	void Start () {
 		correction = Quaternion.identity;
+		camFront = Quaternion.identity;
 	}
 
 	// Update is called once per frame
@@ -34,10 +37,11 @@ public class RotateBASIC : MonoBehaviour {
 		if(update_correction)
 		{
 			correction = WatchRotationJNI.rotation;
+			camFront =  Quaternion.LookRotation(GameObject.Find("Main Camera").transform.forward);
 		}
 
 
-		transform.localRotation = rotation * Quaternion.Inverse(correction);
+		transform.localRotation = rotation * camFront * Quaternion.Inverse(correction);
 
 
 
